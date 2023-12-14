@@ -53,15 +53,15 @@ ls -a
 
 # env -S $(grep -v '^#' $ENV_FILENAME) env
 
-set -a
-source $ENV_FILENAME
-set +a
-env
+# set -a
+# source $ENV_FILENAME
+# set +a
+# env
 
-log 'ENVS ##############';
-printenv
+# log 'ENVS ##############';
+# printenv
 
-docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d --remove-orphans --build"
+docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d"
 
 
 
