@@ -46,8 +46,13 @@ tar -C \$workdir -xjv;
 
 cd \$workdir;
 
+whoami;
+username=whoami;
+
+sudo usermod -aG docker \$username
+
 log 'FILES #############: ';
-ls -a
+ls -a;
 
 log 'Launching docker compose...';
 docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d"
