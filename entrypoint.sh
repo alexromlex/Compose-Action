@@ -44,26 +44,13 @@ mkdir \$workdir;
 log 'Unpacking workspace...';
 tar -C \$workdir -xjv;
 
-log 'Launching docker compose...';
-
 cd \$workdir;
 
 log 'FILES #############: ';
 ls -a
 
-# env -S $(grep -v '^#' $ENV_FILENAME) env
-
-# set -a
-# source $ENV_FILENAME
-# set +a
-# env
-
-# log 'ENVS ##############';
-# printenv
-
+log 'Launching docker compose...';
 docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d"
-
-
 
 echo ">> [local] Connecting to remote host."
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
