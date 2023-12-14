@@ -49,7 +49,7 @@ cd \$workdir;
 whoami;
 username=whoami;
 
-sudo usermod -aG docker \$username
+usermod -aG docker \$username
 
 log 'FILES #############: ';
 ls -a;
