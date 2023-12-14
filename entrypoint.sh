@@ -53,9 +53,12 @@ ls -a
 
 source \"$ENV_FILENAME\";
 
+log 'ENVS ##############';
+printenv
+
 cd \"\$HOME/workspace\";
 
-docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" up -d --remove-orphans --build"
+docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d --remove-orphans --build"
 
 
 
