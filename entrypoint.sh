@@ -51,12 +51,10 @@ cd \$workdir;
 log 'FILES #############: ';
 ls -a
 
-source \"$ENV_FILENAME\";
+env -S $(grep -v '^#' $ENV_FILENAME) env
 
 log 'ENVS ##############';
 printenv
-
-cd \"\$HOME/workspace\";
 
 docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d --remove-orphans --build"
 
