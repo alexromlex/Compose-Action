@@ -51,7 +51,7 @@ whoami;
 logname;
 myuname=$SUDO_USER
 
-usermod -aG docker $SUDO_USER
+usermod -aG docker \$myuname
 
 log 'FILES #############: ';
 ls -a;
