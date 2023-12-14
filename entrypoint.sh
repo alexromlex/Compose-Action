@@ -20,10 +20,45 @@ tar cjvf /tmp/workspace.tar.bz2 --exclude .git --exclude vendor .
 log "Launching ssh agent."
 eval `ssh-agent -s`
 
-
-remote_command="set -e ; log() { echo '>> [remote]' \$@ ; } ; cleanup() { log 'Removing workspace...'; rm -rf \"\$HOME/workspace\" ; } ; log 'Creating workspace directory DEF...' ; mkdir -p \"\$HOME/workspace\" ; trap cleanup EXIT ; log 'Unpacking workspace...' ; tar -C \"\$HOME/workspace\" -xjv ; log 'Launching docker compose DEF...' ; source \"$ENV_FILENAME\" ; cd \"\$HOME/workspace\" ; docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" up -d --remove-orphans --build"
-
 ssh-add <(echo "$SSH_PRIVATE_KEY")
+
+
+remote_command="set -e;
+
+workdir=\"\$HOME/workspace\";
+
+log() {
+  echo '>> [remote]' \$@;
+};
+
+if [ -d \$workdir ]
+then
+  log 'Deleting workspace directory...';
+  rm -rf \$workdir;
+fi
+
+log 'Creating workspace directory...';
+
+mkdir \$workdir;
+
+log 'Unpacking workspace...';
+tar -C \$workdir -xjv;
+
+log 'Launching docker compose...';
+
+cd \$workdir;
+
+log 'FILES #############: ';
+ls
+dir
+
+source \"$ENV_FILENAME\";
+
+cd \"\$HOME/workspace\";
+
+docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" up -d --remove-orphans --build"
+
+
 
 echo ">> [local] Connecting to remote host."
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
