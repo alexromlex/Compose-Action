@@ -46,13 +46,6 @@ tar -C \$workdir -xjv;
 
 cd \$workdir;
 
-log 'Users...';
-whoami;
-logname;
-myuname=$SUDO_USER
-
-usermod -aG docker \$myuname
-
 log 'FILES #############: ';
 ls -a;
 
