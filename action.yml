@@ -26,6 +26,9 @@ inputs:
   docker_compose_down:
     description: Execute docker compose-down ("true" or "false").
     default: 'false'
+  tar_package_operation_modifers:
+    description: Tar operation modifiers used while creating the package.
+    default: '--exclude .git --exclude .github --exclude .gitignore --exclude .gitmodules'
 runs:
   using: docker
   image: Dockerfile
@@ -37,3 +40,4 @@ runs:
     DOCKER_COMPOSE_FILENAME: ${{ inputs.docker_compose_filename }}
     ENV_FILENAME: ${{ inputs.env_filename }}
     DOCKER_COMPOSE_DOWN: ${{ inputs.docker_compose_down }}
+    TAR_PACKAGE_OPERATION_MODIFIERS: ${{ inputs.tar_package_operation_modifers }}
