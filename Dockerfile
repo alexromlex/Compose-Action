@@ -1,7 +1,6 @@
 # FROM alpine:3.8
-FROM python:3.10.13-slim-bookworm
-RUN apt-get update && apt-get install --no-install-recommends && \
-	apt-get clean && rm -rf /var/lib/apt/lists/*
+# FROM python:3.10.13-slim-bookworm
+FROM alpine:3.10
 RUN apt-get --no-cache openssh bash
 ADD entrypoint.sh /entrypoint.sh
 WORKDIR /github/workspace
