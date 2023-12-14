@@ -51,7 +51,12 @@ cd \$workdir;
 log 'FILES #############: ';
 ls -a
 
-env -S $(grep -v '^#' $ENV_FILENAME) env
+# env -S $(grep -v '^#' $ENV_FILENAME) env
+
+set -a
+source $ENV_FILENAME
+set +a
+env
 
 log 'ENVS ##############';
 printenv
