@@ -20,6 +20,9 @@ inputs:
   docker_compose_filename:
     description: Docker compose file to use
     default: docker-compose.yaml
+  env_filename:
+    description: Env file to use by compose
+    default: 'false'
   docker_compose_down:
     description: Execute docker compose-down ("true" or "false").
     default: 'false'
@@ -32,4 +35,5 @@ runs:
     SSH_PORT: ${{ inputs.ssh_port }}
     SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
     DOCKER_COMPOSE_FILENAME: ${{ inputs.docker_compose_filename }}
+    ENV_FILENAME: ${{ inputs.env_filename }}
     DOCKER_COMPOSE_DOWN: ${{ inputs.docker_compose_down }}
