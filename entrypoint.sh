@@ -15,7 +15,7 @@ cleanup() {
 trap cleanup EXIT
 
 log "Packing workspace into archive to transfer onto remote machine."
-tar cjvf /tmp/workspace.tar.bz2 --exclude .git --exclude vendor .
+tar cjvf /tmp/workspace.tar.bz2 .
 
 log "Launching ssh agent."
 eval `ssh-agent -s`
@@ -49,8 +49,7 @@ log 'Launching docker compose...';
 cd \$workdir;
 
 log 'FILES #############: ';
-ls
-dir
+ls -a
 
 source \"$ENV_FILENAME\";
 
