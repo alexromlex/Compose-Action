@@ -1,0 +1,35 @@
+name: SSH-Compose-Action
+description: SSH into host and deploy repository with Docker Compose
+branding:
+  icon: server
+  color: purple
+inputs:
+  ssh_private_key:
+    description: Private SSH key used for logging into remote system.
+    required: true
+  ssh_host:
+    description: Remote host name.
+    required: true
+  ssh_port:
+    description: Remote SSH port.
+    default: 22
+    required: true
+  ssh_user:
+    description: Remote user name.
+    required: true
+  docker_compose_filename:
+    description: Docker compose file to use
+    default: docker-compose.yaml
+  docker_compose_down:
+    description: Execute docker compose-down ("true" or "false").
+    default: 'false'
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    SSH_USER: ${{ inputs.ssh_user }}
+    SSH_HOST: ${{ inputs.ssh_host }}
+    SSH_PORT: ${{ inputs.ssh_port }}
+    SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
+    DOCKER_COMPOSE_FILENAME: ${{ inputs.docker_compose_filename }}
+    DOCKER_COMPOSE_DOWN: ${{ inputs.docker_compose_down }}
