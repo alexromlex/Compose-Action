@@ -54,7 +54,7 @@ cat $ENV_FILENAME;
 
 
 log 'Launching docker compose...';
-docker compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d"
+docker compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d --remove-orphans --force-recreate"
 
 echo ">> [local] Connecting to remote host."
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
