@@ -50,7 +50,7 @@ log 'FILES #############: ';
 ls -a;
 
 log 'Launching docker compose...';
-sudo docker-compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d"
+docker compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d;
 
 echo ">> [local] Connecting to remote host."
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
