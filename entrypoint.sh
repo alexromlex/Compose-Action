@@ -25,7 +25,7 @@ ssh-add <(echo "$SSH_PRIVATE_KEY")
 
 remote_command="set -e;
 
-workdir=\"\$HOME/workspace\";
+workdir=\"\$HOME/code\";
 
 log() {
   echo '>> [remote]' \$@;
@@ -45,13 +45,6 @@ log 'Unpacking workspace...';
 tar -C \$workdir -xjv;
 
 cd \$workdir;
-
-log 'FILES #############: ';
-ls -a;
-
-log 'ENV FILE #############: ';
-cat $ENV_FILENAME;
-
 
 log 'Launching docker compose...';
 docker compose -f \"$DOCKER_COMPOSE_FILENAME\" --env-file $ENV_FILENAME up -d --remove-orphans --force-recreate"
